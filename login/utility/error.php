@@ -1,9 +1,10 @@
 <?php
-define("PAGE", "Error");
+define("PAGE", "Errore");
 include("layouts/header.php");
+include("layouts/menu.php");
 ?>
 
-<div class="container">
+<div class="content">
     <div class="box error">
 
         <h1>Login Failed</h1>
