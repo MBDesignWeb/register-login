@@ -51,20 +51,10 @@ let emailInput = document.getElementsByid("email");
 let emailError = document.getElementsByid("email-error");
 let emptyEmailError = document.getElementsByid("empty-email");
 
-// Email Login
-let emailLoginInput = document.getElementsByid("email-login");
-let emailLoginError = document.getElementsByid("email-login-error");
-let emptyEmailLoginError = document.getElementsByid("empty-email-login");
-
 // Password
 let passwordInput = document.getElementsByid("password");
 let passwordError = document.getElementsByid("password-error");
 let emptyPasswordError = document.getElementsByid("empty-password");
-
-// Password Login
-let passwordLoginInput = document.getElementsByid("password-login");
-let passwordLoginError = document.getElementsByid("password-login-error");
-let emptyPasswordLoginError = document.getElementsByid("empty-password-login");
 
 // Conferma password
 let verifyPasswordInput = document.getElementById("verify-password");
@@ -163,17 +153,6 @@ emailInput.addEventListener("input", () => {
   }
 });
 
-// Email Login
-emailLoginInput.addEventListener("input", () => {
-  if (emailVerify(emailLoginInput.value)) {
-    emailLoginError.classList.add("hide");
-    validInput(emailLoginInput);
-  } else {
-    errorUpdate(emailLoginInput, emailLoginError);
-    emptyUpdate(emailLoginInput, emptyEmailLoginError, emailLoginError);
-  }
-});
-
 // Password
 passwordInput.addEventListener("input", () => {
   if (passwordVerify(passwordInput.value)) {
@@ -182,17 +161,6 @@ passwordInput.addEventListener("input", () => {
   } else {
     errorUpdate(passwordInput, passwordError);
     emptyUpdate(passwordInput, emptyPasswordError, passwordError);
-  }
-});
-
-// Password Login
-passwordLoginInput.addEventListener("input", () => {
-  if (passwordVerify(passwordLoginInput.value)) {
-    passwordLoginError.classList.add("hide");
-    validInput(passwordLoginInput);
-  } else {
-    errorUpdate(passwordLoginInput, passwordLoginError);
-    emptyUpdate(passwordLoginInput, emptyPasswordLoginError, passwordLoginError);
   }
 });
 
