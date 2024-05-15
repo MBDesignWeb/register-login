@@ -14,13 +14,6 @@ include("layouts/header.php");
 
   <li>
     <a href="index.php">
-      <img src="img/home.svg" alt="home">
-      <span class="menu-name">Home</span>
-    </a>
-  </li>
-
-  <li>
-    <a href="login.php">
       <img src="img/user.svg" alt="accedi">
       <span class="menu-name">Login</span>
     </a>

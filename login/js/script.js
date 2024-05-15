@@ -14,7 +14,6 @@ openMenu.addEventListener("click", () => {
   arrow.classList.toggle("rotate-arrow");
 });
 
-
 /* -------------------------------------------------------------------------------- */
 /* ! Current Page
 /* -------------------------------------------------------------------------------- */
@@ -36,112 +35,91 @@ menuItems.forEach((item) => {
 /* -------------------------------------------------------------------------------- */
 /* ! Validazione form
 /* -------------------------------------------------------------------------------- */
-// Nome
+//First Name
 let firstNameInput = document.getElementById("first-name-input");
 let firstNameError = document.getElementById("first-name-error");
 let emptyFirstNameError = document.getElementById("empty-first-name");
-
-// Cognome
+//Last name
 let lastNameInput = document.getElementById("last-name-input");
 let lastNameError = document.getElementById("last-name-error");
 let emptyLastNameError = document.getElementById("empty-last-name");
 
-// Email
-let emailInput = document.getElementsByid("email");
-let emailError = document.getElementsByid("email-error");
-let emptyEmailError = document.getElementsByid("empty-email");
-
-// Email Login
-let emailLoginInput = document.getElementsByid("email-login");
-let emailLoginError = document.getElementsByid("email-login-error");
-let emptyEmailLoginError = document.getElementsByid("empty-email-login");
-
-// Password
-let passwordInput = document.getElementsByid("password");
-let passwordError = document.getElementsByid("password-error");
-let emptyPasswordError = document.getElementsByid("empty-password");
-
-// Password Login
-let passwordLoginInput = document.getElementsByid("password-login");
-let passwordLoginError = document.getElementsByid("password-login-error");
-let emptyPasswordLoginError = document.getElementsByid("empty-password-login");
-
-// Conferma password
+//Email
+let emailInput = document.getElementById("email");
+let emailError = document.getElementById("email-error");
+let emptyEmailError = document.getElementById("empty-email");
+//Password
+let passwordInput = document.getElementById("password");
+let passwordError = document.getElementById("password-error");
+let emptyPasswordError = document.getElementById("empty-password");
+//Verify Password
 let verifyPasswordInput = document.getElementById("verify-password");
 let verifyPasswordError = document.getElementById("verify-password-error");
 let emptyVerifyPasswordError = document.getElementById("empty-verify-password");
-
-// Submit
+//Submit
 let submitButton = document.getElementById("submit-button");
-
-// Valid & Error
+//Valid
 let validClasses = document.getElementsByClassName("valid");
 let invalidClasses = document.getElementsByClassName("error");
-
-// Verifica correttezza Password
+//Password Verification
 const passwordVerify = (password) => {
   const regex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\$\%\^\&\!@\#\*\(\)\+\=`~\?\>\<]).{8,}$/;
+    /^(?=.+[a-z])(?=.+[A-Z])(?=.+[0-9])(?=.+[\$\%\^\&\!@\#\*\(\)\+\=`~\?\>\<])/;
   return regex.test(password) && password.length >= 8;
 };
 
-// Verifica contenuto testo (se input contiene solo testo)
+//Text verification (if input contains only text)
 const textVerify = (text) => {
-  const regex = /^[a-zA-z]{3,}$/;
+  const regex = /^[a-zA-Z]{3,}$/;
   return regex.test(text);
 };
 
-// Verifica correttezza email
+//Email verification
 const emailVerify = (input) => {
-  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const regex = /^[a-z0-9_]+@[a-z]{3,}\.[a-z\.]{3,}$/;
   return regex.test(input);
 };
-
-// Input Vuoto
+//For empty input - accepts(input,empty error for that input and other errors)
 const emptyUpdate = (
   inputReference,
   emptyErrorReference,
   otherErrorReference
 ) => {
   if (!inputReference.value) {
-    // Input nullo o vuoto
+    //input is null/empty
     emptyErrorReference.classList.remove("hide");
     otherErrorReference.classList.add("hide");
     inputReference.classList.add("error");
   } else {
-    //input ha lo stesso contenuto
+    //input has some content
     emptyErrorReference.classList.add("hide");
   }
 };
-
-// Messaggio di errore
+//For error styling and displaying error message
 const errorUpdate = (inputReference, errorReference) => {
   errorReference.classList.remove("hide");
   inputReference.classList.remove("valid");
   inputReference.classList.add("error");
 };
-
-// Nessun errore
+//For no errors
 const validInput = (inputReference) => {
   inputReference.classList.remove("error");
   inputReference.classList.add("valid");
 };
-
-// Nome
+//First name
 firstNameInput.addEventListener("input", () => {
   if (textVerify(firstNameInput.value)) {
-    // Se la condizion è vera convalida
+    //If verification returns true
     firstNameError.classList.add("hide");
     validInput(firstNameInput);
   } else {
-    // Se è falsa errore testo
+    //for false
     errorUpdate(firstNameInput, firstNameError);
-    // Se è vuota errore vuota
+    //empty checker
     emptyUpdate(firstNameInput, emptyFirstNameError, firstNameError);
   }
 });
-
-// Cognome
+//Last name
 lastNameInput.addEventListener("input", () => {
   if (textVerify(lastNameInput.value)) {
     lastNameError.classList.add("hide");
@@ -151,8 +129,7 @@ lastNameInput.addEventListener("input", () => {
     emptyUpdate(lastNameInput, emptyLastNameError, lastNameError);
   }
 });
-
-// Email
+//Email
 emailInput.addEventListener("input", () => {
   if (emailVerify(emailInput.value)) {
     emailError.classList.add("hide");
@@ -162,19 +139,7 @@ emailInput.addEventListener("input", () => {
     emptyUpdate(emailInput, emptyEmailError, emailError);
   }
 });
-
-// Email Login
-emailLoginInput.addEventListener("input", () => {
-  if (emailVerify(emailLoginInput.value)) {
-    emailLoginError.classList.add("hide");
-    validInput(emailLoginInput);
-  } else {
-    errorUpdate(emailLoginInput, emailLoginError);
-    emptyUpdate(emailLoginInput, emptyEmailLoginError, emailLoginError);
-  }
-});
-
-// Password
+//Password
 passwordInput.addEventListener("input", () => {
   if (passwordVerify(passwordInput.value)) {
     passwordError.classList.add("hide");
@@ -184,29 +149,13 @@ passwordInput.addEventListener("input", () => {
     emptyUpdate(passwordInput, emptyPasswordError, passwordError);
   }
 });
-
-// Password Login
-passwordLoginInput.addEventListener("input", () => {
-  if (passwordVerify(passwordLoginInput.value)) {
-    passwordLoginError.classList.add("hide");
-    validInput(passwordLoginInput);
-  } else {
-    errorUpdate(passwordLoginInput, passwordLoginError);
-    emptyUpdate(passwordLoginInput, emptyPasswordLoginError, passwordLoginError);
-  }
-});
-
-// Verify Password
+//Verify password
 verifyPasswordInput.addEventListener("input", () => {
   if (verifyPasswordInput.value === passwordInput.value) {
     verifyPasswordError.classList.add("hide");
     validInput(verifyPasswordInput);
   } else {
     errorUpdate(verifyPasswordInput, verifyPasswordError);
-    emptyUpdate(
-      verifyPasswordInput,
-      emptyVerifyPasswordError,
-      verifyPasswordError
-    );
+    emptyUpdate(passwordInput, emptyVerifyPasswordError, verifyPasswordError);
   }
 });
