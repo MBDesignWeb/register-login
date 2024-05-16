@@ -6,13 +6,12 @@ $username = "root";
 $passworddb = "root";
 $dbname = "db_register";
 
-try {
-    $db = new PDO("mysql:=$servername;dbname=$dbname", $username, $passworddb);
-    $db ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    header("Location: ../welcome.php");
-} catch (PDOException $e) {
-    print "Errore!: " . $e->getMessage() . "<br/>";
-    die();
+// Crea la connessione
+$conn = new mysqli($servername, $username, $passworddb, $dbname);
+
+// Controlla la connessione
+if ($conn->connect_error) {
+    die("Connessione al database fallita: " . $conn->connect_error);
 }
 
 ?>
