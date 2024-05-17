@@ -2,23 +2,22 @@
 
 require_once('config.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Ottieni i valori inviati dal form
+$first_name = $_POST['first-name'];
+$last_name = $_POST['last-name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-  // Verifica se sono stati inviati dati tramite POST
-  $firstName = $connessione->real_escape_string(($_POST['first-name']));
-  $lastName = $connessione->real_escape_string(($_POST['last-name']));
-  $email = $connessione->real_escape_string($_POST['email']);
-  $password = $connessione->real_escape_string($_POST['password']);
-  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Query per inserire i dati nel database
+$sql = "INSERT INTO utenti (nome, cognome, email, password)
+        VALUES ('$first_name', '$last_name', '$email', '$password')";
 
-  // Query
-  $sql = "INSERT INTO utenti (nome, cognome, email, password) VALUES ('$firstName', '$lastName', '$email', '$hashedPassword')";
-
-  if ($connessione->query($sql) === true) {
-    echo 'Registrazione avvenuta con successo';
-  } else {
-    echo 'Errore durante la registrazione utente: ' . $connessione->error;
-  }
+if ($conn->query($sql) === TRUE) {
+    header("Location: ../index.php");
+} else {
+    echo "Errore durante la registrazione: " . $conn->error . "<a href=\"login/register.php\">Torna alla registrazione</a>";
 }
 
+// Chiudi la connessione al database
+$conn->close();
 ?>
