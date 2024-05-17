@@ -13,9 +13,9 @@ $sql = "INSERT INTO utenti (nome, cognome, email, password)
         VALUES ('$first_name', '$last_name', '$email', '$password')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Registrazione avvenuta con successo!";
+    header("Location: ../index.php");
 } else {
-    echo "Errore durante la registrazione: " . $conn->error;
+    echo "Errore durante la registrazione: " . $conn->error . "<a href=\"login/register.php\">Torna alla registrazione</a>";
 }
 
 // Chiudi la connessione al database

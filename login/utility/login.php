@@ -1,51 +1,34 @@
 <?php
 
-// Includi il file di configurazione del database
 require_once('config.php');
 
-// Pulisce e protegge i dati forniti tramite il metodo POST
-$email = $connessione->real_escape_string($_POST['email']);
-$password = $connessione->real_escape_string($_POST['password']);
+// Ottieni i valori inviati dal form
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-// Controlla se la richiesta è di tipo POST
-if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+// Prepara una query SQL sicura per evitare SQL Injection
+$sql = "SELECT * FROM utenti WHERE email = ? AND password = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $email, $password);
+$stmt->execute();
+$result = $stmt->get_result();
 
-  // Query per selezionare l'utente dal database in base all'username fornito
-  $sql_select = "SELECT * FROM utenti WHERE email = '$email'";
-  if ($result = $connessione->query($sql_select)) {
+// Verifica se l'utente esiste e se la password è corretta
+if ($result->num_rows > 0) {
+  // L'utente esiste, quindi inizia una sessione
+  session_start();
+  $user = $result->fetch_assoc();
+  $_SESSION['user_id'] = $user['id'];
+  $_SESSION['user_name'] = $user['nome'];
+  $_SESSION['user_email'] = $user['email'];
 
-    // Se esiste esattamente un risultato
-    if ($result->num_rows == 1) {
-      // Recupera la riga risultante come array associativo
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-
-      // Verifica se la password fornita corrisponde alla password crittografata nel database
-      if (password_verify($password, $row['password'])) {
-        // Inizia una nuova sessione
-        session_start();
-
-        // Imposta le variabili di sessione per tenere traccia dell'accesso
-        $_SESSION['logged'] = true;
-        $_SESSION['id'] = $row['id'];
-        $_SESSION['email'] = $row['email'];
-
-        // Reindirizza l'utente all'area privata
-        header("location: welcome.php");
-      } else {
-        // Se la password non corrisponde, mostra un messaggio di errore
-        echo "La password non è corretta";
-      }
-    } else {
-      // Se non ci sono account con l'username fornito, mostra un messaggio di errore
-      echo "Non ci sono account con quella email";
-    }
-  } else {
-    // Se si verifica un errore durante l'esecuzione della query, mostra un messaggio di errore
-    echo "Errore in fase di login";
-  }
-
-  // Chiude la connessione al database
-  $connessione->close();
+  // Redireziona l'utente alla pagina del profilo o un'altra pagina protetta
+  header("Location: ../welcome.php");
+} else {
+  // Se l'email o la password non sono corretti, mostra un messaggio di errore
+  echo "Email o password non corretti. <a href=\"../login.php\">Riprova</a>";
 }
 
-?>
+// Chiudi la connessione al database
+$stmt->close();
+$conn->close();

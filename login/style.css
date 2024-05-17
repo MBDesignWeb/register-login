@@ -5,6 +5,7 @@ html, body { height: 100vh; margin: 0; padding: 0; }
 body{ background-color: #0073aa; color:#000; font-family: "Lato"; overflow-x: hidden; }
 
 .container { margin: 0 auto; max-width: 1200px; }
+.content { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; max-width: 1200px; margin: 0 auto; }
 .grid { padding: 0 20px; }
 
 
@@ -161,12 +162,6 @@ h1, h2, h3, h4 { font-family: 'Lato'; }
 
 
 /* -------------------------------------------------------------------------------- */
-/* ! Content 
-/* -------------------------------------------------------------------------------- */
-.content { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; max-width: 1200px; margin: 0 auto; }
-
-
-/* -------------------------------------------------------------------------------- */
 /* ! Homepage
 /* -------------------------------------------------------------------------------- */
 .homepage-text { text-align: center; color: #fefefe; }
@@ -208,6 +203,14 @@ input { padding: 1em 0.5em; border: 1.4px solid #d0d0d0; }
 @media (max-width: 450px) {
   .form-register { min-width: 250px; font-size: 14px; }
 }
+
+
+/* -------------------------------------------------------------------------------- */
+/* ! Welcome page - Area privata */
+/* -------------------------------------------------------------------------------- */
+.welcome-page h1,
+.welcome-page h2,
+.welcome-page p { color: #fefefe; }
 
 
 /* -------------------------------------------------------------------------------- */
