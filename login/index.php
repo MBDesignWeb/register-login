@@ -11,12 +11,12 @@ include("layouts/menu.php");
 
     <div class="input-section">
       <label for="email">Email <span class="required-color">*</span></label>
-      <input type="email" name="email" id="email" required aria-label="Inserisci la tua email">
+      <input type="email" name="email" id="email" required aria-label="Inserisci la tua email" autocomplete="email">
     </div>
 
     <div class="input-section">
       <label for="password">Password <span class="required-color">*</span></label>
-      <input type="password" name="password" id="password" required aria-label="Inserisci la tua password">
+      <input type="password" name="password" id="password" required aria-label="Inserisci la tua password" autocomplete="password">
     </div>
 
     <input type="submit" value="Accedi" class="submit-button">
@@ -25,6 +25,8 @@ include("layouts/menu.php");
 
   </form>
 </div>
+
+<script src="js/script.js"></script>
 
 <?php
 include("layouts/footer.php");

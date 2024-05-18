@@ -20,6 +20,8 @@ include("layouts/menu.php");
   <a href="index.php" class="button-frame">Esci <span></span></a>
 </div>
 
+<script src="js/script.js"></script>
+
 <?php
 include("layouts/footer.php");
 ?>

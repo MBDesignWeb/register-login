@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="login/style.css">
   <link rel="shortcut icon" href="img/favicon.webp" type="image/x-icon">
-  <title>Simple PHP Login</title>
+  <title>Register & Login</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 
     <div class="homepage-text">
       <h1 class="headline">Benvenuti!</h1>
-      <h2>Iscrivetevi oppure registratevi!</h2>
+      <h2>Accedi oppure registrati!</h2>
     </div>
 
     <div class="homepage-button">
