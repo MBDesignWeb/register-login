@@ -10,12 +10,12 @@ include("layouts/menu.php");
     <h1 class="title">Accedi</h1>
 
     <div class="input-section">
-      <label for="email">Email <span class="required-color">*</span></label>
+      <label for="email">Email</label>
       <input type="email" name="email" id="email" required aria-label="Inserisci la tua email" autocomplete="email">
     </div>
 
     <div class="input-section">
-      <label for="password">Password <span class="required-color">*</span></label>
+      <label for="password">Password</label>
       <input type="password" name="password" id="password" required aria-label="Inserisci la tua password" autocomplete="password">
     </div>
 

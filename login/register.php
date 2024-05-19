@@ -46,7 +46,7 @@ include("layouts/menu.php");
 
     <input type="submit" value="Registrati ora" class="submit-button" id="submit-button">
 
-    <p>Hai già un account? <a href="index.php">Accedi</a></p>
+    <p>Hai già un account? <a href="index.php"">Accedi</a></p>
 
   </form>
 </div>
