@@ -177,6 +177,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  if (verifyPasswordInput) {
+    verifyPasswordInput.addEventListener("input", () => {
+      if (verifyPasswordInput.value === passwordInput.value) {
+        verifyPasswordError.classList.add("hide");
+        validInput(verifyPasswordInput);
+      } else {
+        errorUpdate(verifyPasswordInput, verifyPasswordError);
+        emptyUpdate(
+          verifyPasswordInput,
+          emptyVerifyPasswordError,
+          verifyPasswordError
+        );
+      }
+    });
+  }
+
   // Verify Password
   form.addEventListener("submit", (event) => {
     // Verifica se le password coincidono
@@ -188,4 +204,5 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
     }
   });
+  
 });
