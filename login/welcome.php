@@ -15,8 +15,8 @@ include("layouts/menu.php");
 
 <div class="content welcome-page">
   <h1 class="headline">Area privata</h1>
-  <h2>Benvenuto, <?php echo $_SESSION['user_name']; ?>!</h2>
-  <p>Email: <?php echo $_SESSION['user_email']; ?></p>
+  <h2>Benvenuto <?php echo $_SESSION['user_name']; ?> nella tua area privata!</h2>
+  <p>Ti sei registrato con la seguente email: <?php echo $_SESSION['user_email']; ?></p>
   <a href="index.php" class="button-frame">Esci <span></span></a>
 </div>
 

@@ -8,14 +8,19 @@ $last_name = $_POST['last-name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+// Crea un hash della password
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
 // Query per inserire i dati nel database
-$sql = "INSERT INTO utenti (nome, cognome, email, password)
-        VALUES ('$first_name', '$last_name', '$email', '$password')";
+$sql = "INSERT INTO utenti (nome, cognome, email, password) VALUES ('$first_name', '$last_name', '$email', '$hashed_password')";
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: ../index.php");
+    echo '<script>
+            alert("Registrazione avvenuta con successo!");
+            window.location.href = "../index.php";
+          </script>';
 } else {
-    echo "Errore durante la registrazione: " . $conn->error . "<a href=\"login/register.php\">Torna alla registrazione</a>";
+    echo 'Errore durante la registrazione: ' . $conn->error . ' <a href="login/register.php">Torna alla registrazione</a>';
 }
 
 // Chiudi la connessione al database
