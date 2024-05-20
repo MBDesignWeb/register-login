@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Verify Password
   if (verifyPasswordInput) {
     verifyPasswordInput.addEventListener("input", () => {
       if (verifyPasswordInput.value === passwordInput.value) {
@@ -193,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Verify Password
+  // Check password
   form.addEventListener("submit", (event) => {
     // Verifica se le password coincidono
     if (passwordInput.value !== verifyPasswordInput.value) {
