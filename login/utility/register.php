@@ -20,9 +20,11 @@ if ($conn->query($sql) === TRUE) {
             window.location.href = "../index.php";
           </script>';
 } else {
-    echo 'Errore durante la registrazione: ' . $conn->error . ' <a href="login/register.php">Torna alla registrazione</a>';
+    echo '<script>
+            alert("Registrazione non avvenuta, riprovare!");
+            window.location.href = "../register.php";
+        </script>';
 }
 
 // Chiudi la connessione al database
 $conn->close();
-?>

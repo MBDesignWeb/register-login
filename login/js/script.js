@@ -37,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
   /* -------------------------------------------------------------------------------- */
   /* ! Validazione form
   /* -------------------------------------------------------------------------------- */
+
+  // Form
+  const form = document.querySelector("form");
+
   // Nome
   const firstNameInput = document.getElementById("first-name-input");
   const firstNameError = document.getElementById("first-name-error");
@@ -63,9 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyVerifyPasswordError = document.getElementById(
     "empty-verify-password"
   );
-
-  // Submit
-  const submitButton = document.getElementById("submit-button");
 
   // Verifica correttezza Password
   const passwordVerify = (password) => {
@@ -177,19 +178,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Verify Password
-  if (verifyPasswordInput) {
-    verifyPasswordInput.addEventListener("input", () => {
-      if (verifyPasswordInput.value === passwordInput.value) {
-        verifyPasswordError.classList.add("hide");
-        validInput(verifyPasswordInput);
-      } else {
-        errorUpdate(verifyPasswordInput, verifyPasswordError);
-        emptyUpdate(
-          verifyPasswordInput,
-          emptyVerifyPasswordError,
-          verifyPasswordError
-        );
-      }
-    });
-  }
+  form.addEventListener("submit", (event) => {
+    // Verifica se le password coincidono
+    if (passwordInput.value !== verifyPasswordInput.value) {
+      // Se le password non coincidono, mostra un messaggio di errore
+      verifyPasswordError.textContent = "Le password non coincidono.";
+      verifyPasswordError.classList.remove("hide");
+      // Impedisci l'invio del modulo
+      event.preventDefault();
+    }
+  });
 });

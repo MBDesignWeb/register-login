@@ -33,7 +33,7 @@ include("layouts/menu.php");
     <div class="input-section">
       <label for="password">Password <span class="required-color">*</span></label>
       <input type="password" name="password" id="password" required aria-label="Inserisci la tua password" autocomplete="password">
-      <span id="password-error" class="error hide">La password deve contenere almeno 8 caratteri, tra cui una lettera maiuscola, una minuscola, un numero e un simbolo.</span>
+      <span id="password-error" class="error hide">La password > 8 caratteri, Una lettera maiuscola, una minuscola,<br> un numero e un simbolo.</span>
       <span id="empty-password" class="error hide">Il campo password non può essere vuoto.</span>
     </div>
 
