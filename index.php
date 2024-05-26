@@ -15,7 +15,6 @@
 
   <?php
   define("PAGE", "Home");
-  include("layouts/header.php");
   ?>
 
   <div class="content">

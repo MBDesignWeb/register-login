@@ -18,6 +18,7 @@ if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     // Verifica se la password è corretta
     if (password_verify($password, $user['password'])) {
+
         // L'utente esiste e la password è corretta, quindi inizia una sessione
         session_start();
         $_SESSION['user_id'] = $user['id'];
@@ -26,14 +27,29 @@ if ($result->num_rows > 0) {
 
         // Redireziona l'utente alla pagina del profilo o un'altra pagina protetta
         header("Location: ../welcome.php");
+
         exit();
+
     } else {
-        // Se la password non è corretta, mostra un messaggio di errore
-        echo "Email o password non corretti. <a href=\"../login.php\">Riprova</a>";
+
+        // Se la password non è corretta, mostra un messaggio di errore con un popup e redireziona
+        echo '<script>
+                alert("Password errata. Riprovare.");
+                window.location.href = "../index.php";
+              </script>';
+
+        exit();
+
     }
 } else {
-    // Se l'utente non esiste, mostra un messaggio di errore
-    echo "Utente non presente nei nostri sistemi. <a href=\"../login.php\">Riprova</a>";
+
+    // Se l'utente non esiste, mostra un messaggio di errore con un popup e redireziona
+    echo '<script>
+            alert("Utente non presente nei nostri sistemi. Riprovare.");
+            window.location.href = "../index.php";
+          </script>';
+
+    exit();
 }
 
 // Chiudi la connessione al database
